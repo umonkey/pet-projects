@@ -63,6 +63,8 @@
 		flex-basis: 20px;
 		opacity: 0.5;
 		cursor: pointer;
+
+		background-color: transparent;
 	}
 
 	.label {
