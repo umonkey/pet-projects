@@ -1,0 +1,45 @@
+name: "Deploy Wheel of Emotions"
+
+on:
+  push:
+    branches:
+      - master
+    paths: 'wheel-of-emotions/**'
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: wheel-of-emotions
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    name: "Deploy"
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Cache node_modules
+      id: node-cache
+      uses: actions/cache@v4
+      with:
+        path: 'wheel-of-emotions/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('wheel-of-emotions/package-lock.json') }}
+
+    - name: Install new dependencies
+      run: npm ci
+
+    - name: Build
+      run: npm run build
+
+    - name: Install wrangler
+      run: npm install -g wrangler
+
+    - name: Deploy
+      run: wrangler pages deploy 'build' --project-name=wheel-of-emotions --branch=master
+      env:
+        CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_TOKEN }}
