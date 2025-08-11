@@ -1,0 +1,10 @@
+button.btn {
+	background-color: #2563eb;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	height: 40px;
+	padding: 0 10px;
+	line-height: 40px;
+	cursor: pointer;
+}

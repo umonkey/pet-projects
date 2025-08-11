@@ -1,0 +1,32 @@
+:root {
+	color: #000;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	background-color: #f8f8f8;
+}
+
+.narrow {
+	width: 100%;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+
+.row {
+	width: 100%;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	box-sizing: border-box;
+
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+}
